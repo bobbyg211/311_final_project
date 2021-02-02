@@ -96,7 +96,7 @@ body {
       let lastName = getE("last-name").value;
       let phone = getE("phone").value;
 
-      const response = await fetch('/api/customers', {
+      const response = await fetch('users/api/customers', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -120,17 +120,18 @@ body {
     }
     async function getCustomers(){
         let searchCustomerValue = document.getElementById("search-customer-input").value;
-        const response = await fetch('/api/customers');
+        const response = await fetch('users/api/customers');
         const data = await response.json(); 
+        console.log(data);
         let tbody = "";
        for(let i =0; i < data.length; i ++){
            const customer = data[i];
-           const {id, firstName, lastName, emailAddress, phone} = customer;
+           const {id, first_name, last_name, email_address, phone} = customer;
         tbody  += `<tr>
                             <th scope="row">${id}</th>
-                            <td>${firstName}</td>
-                            <td>${lastName}</td>
-                            <td>${emailAddress}</td>
+                            <td>${first_name}</td>
+                            <td>${last_name}</td>
+                            <td>${email_address}</td>
                             <td>${phone}</td>
                             <td><a href="#" onclick="viewCustomer(${id})">View</a></td>
                         </tr>`
