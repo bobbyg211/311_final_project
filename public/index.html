@@ -53,7 +53,7 @@ body {
                   
     </div>
     <div id="add-customer" class="page">
-        <form>
+        <form id="">
             <div class="form-group">
                 <label for="email-address">Email address</label>
                 <input type="email" class="form-control" id="email-address" placeholder="Enter email">
@@ -96,15 +96,19 @@ body {
       let lastName = getE("last-name").value;
       let phone = getE("phone").value;
 
-      const response = await fetch('users/api/customers', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ emailAddress, firstName, lastName,phone})
-      });
-      const data = await response.json(); 
-      alert('Customer created');
+      if (emailAddress !== "" && firstName !== "" && lastName !== "" && phone !== "") {
+        const response = await fetch('users/api/customers', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ emailAddress, firstName, lastName,phone})
+        });
+        const data = await response.json(); 
+        alert('Customer created');
+      } else {
+        alert('Fill out all form fields.');
+      }
     }
 
     function viewCustomer(id){
@@ -122,7 +126,6 @@ body {
         let searchCustomerValue = document.getElementById("search-customer-input").value;
         const response = await fetch('users/api/customers');
         const data = await response.json(); 
-        console.log(data);
         let tbody = "";
        for(let i =0; i < data.length; i ++){
            const customer = data[i];
