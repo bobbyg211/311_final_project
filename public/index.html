@@ -126,7 +126,7 @@ body {
         document.getElementById("customer-detail").innerHTML = customerHtml;
     }
     async function getCustomers(){
-        let searchCustomerValue = document.getElementById("search-customer-input").value;
+        // let searchCustomerValue = document.getElementById("search-customer-input").value;
         const response = await fetch('api/customers');
         const data = await response.json(); 
         let tbody = "";
