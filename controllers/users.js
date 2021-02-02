@@ -4,7 +4,7 @@ const { handleSQLError } = require("../sql/error");
 
 const getAllUsers = (req, res) => {
   // SELECT ALL USERS
-  pool.query("SELECT * FROM customers", (err, rows) => {
+  pool.query("SELECT * FROM users", (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);
   });
@@ -24,15 +24,9 @@ const getUserById = (req, res) => {
 
 const createUser = (req, res) => {
   // INSERT INTO USERS FIRST AND LAST NAME
-  let sql =
-    "INSERT INTO customers (first_name, last_name, email_address, phone) VALUES (?, ?, ?, ?)";
+  let sql = "QUERY GOES HERE";
   // WHAT GOES IN THE BRACKETS
-  sql = mysql.format(sql, [
-    req.body.firstName,
-    req.body.lastName,
-    req.body.emailAddress,
-    req.body.phone,
-  ]);
+  sql = mysql.format(sql, []);
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err);

@@ -98,7 +98,7 @@ body {
       let phone = getE("phone").value;
 
       if (emailAddress !== "" && firstName !== "" && lastName !== "" && phone !== "") {
-        const response = await fetch('users/api/customers', {
+        const response = await fetch('api/customers', {
           method: 'POST',
           headers: {
           'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ body {
     }
     async function getCustomers(){
         let searchCustomerValue = document.getElementById("search-customer-input").value;
-        const response = await fetch('users/api/customers');
+        const response = await fetch('api/customers');
         const data = await response.json(); 
         let tbody = "";
        for(let i =0; i < data.length; i ++){
